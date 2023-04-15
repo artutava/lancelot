@@ -88,6 +88,11 @@ class LCT3_PT_Panel_Main(Panel):
             col= rowsc.column()
             rowsc.template_icon(my_icon.icon_id, scale=8)
             col= rowsc.column()
+            layout = self.layout
+            row = layout.row()
+            row.label(text="No Armature Selected.", icon='ERROR', icon_value=2)
+
+
            
             #boxsc.menu(text="TEXTO")
             
@@ -337,10 +342,18 @@ class LCT3_PT_Panel_Select(Panel):
 
             col = row.column()
             col.operator("lct3.clear_all_bone_transform", text="All", icon="OUTLINER_OB_ARMATURE")
+
+            row= layout.row ()
             
-     
             col = row.column()
-            col.operator("lct3.set_inverse_all", text="Controls", icon="SPHERE")
+            col.operator("lct3.clear_bone_group_transform", text="Group", icon="FILE_FOLDER")
+            col = row.column()
+            col.operator("lct3.clear_bone_layer_transform", text="Layer", icon="IMGDISPLAY")
+
+            
+            row= layout.row ()
+            col = row.column()
+            col.operator("lct3.set_inverse_all", text="Cleanup Controls", icon="SPHERE")
         
         
 

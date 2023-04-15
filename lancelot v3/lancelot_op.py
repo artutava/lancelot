@@ -452,3 +452,77 @@ class LCT3_OT_Clear_all_bone_transform(Operator):
             # Update the viewport
             bpy.context.view_layer.update()
         return {'FINISHED'}
+
+class LCT3_OT_Clear_bone_group_transform(Operator):
+    bl_idname = "lct3.clear_bone_group_transform"
+    bl_label = "Clear Bone Group Transforms"
+    bl_description= "Clear the transforms of bones in the same bone group as selected bone."
+
+    def execute (self,context):
+
+        def clear_pose_transforms_for_bone_group():
+            # Check if the active object is an armature and has an active bone
+            if bpy.context.active_object and bpy.context.active_object.type == 'ARMATURE' and bpy.context.active_pose_bone:
+                armature = bpy.context.active_object
+                active_bone = bpy.context.active_pose_bone
+                
+                # Get the bone group of the active bone
+                bone_group = active_bone.bone_group
+
+                if bone_group:
+                    # Clear pose transforms for all bones in the bone group
+                    for bone in armature.pose.bones:
+                        if bone.bone_group == bone_group:
+                            bone.location.zero()
+                            bone.rotation_quaternion.identity()
+                            bone.rotation_euler.zero()
+                            bone.scale = (1, 1, 1)
+                            bone.rotation_axis_angle[0] = 0
+                            bone.rotation_axis_angle[1] = 1
+                            bone.rotation_axis_angle[2] = 0
+                            bone.rotation_axis_angle[3] = 0
+
+                    # Update the viewport
+                    bpy.context.view_layer.update()
+                else:
+                    print("The selected bone is not in a bone group.")
+
+        clear_pose_transforms_for_bone_group()
+        return {'FINISHED'}
+
+class LCT3_OT_Clear_bone_layer_transform(Operator):
+    bl_idname = "lct3.clear_bone_layer_transform"
+    bl_label = "Clear Bone Layer Transforms"
+    bl_description= "Clear the transforms of bones in the same layer as selected bone."
+
+    def execute (self,context):
+
+       
+
+        def clear_pose_transforms_for_armature_layer():
+            # Check if the active object is an armature and has an active bone
+            if bpy.context.active_object and bpy.context.active_object.type == 'ARMATURE' and bpy.context.active_pose_bone:
+                armature = bpy.context.active_object
+                active_bone = bpy.context.active_pose_bone
+                
+                # Get the armature layer of the active bone
+                armature_layer = active_bone.bone.layers
+
+                # Clear pose transforms for all bones in the same armature layer
+                for bone in armature.pose.bones:
+                    if any(x and y for x, y in zip(bone.bone.layers, armature_layer)):
+                        bone.location.zero()
+                        bone.rotation_quaternion.identity()
+                        bone.rotation_euler.zero()
+                        bone.scale = (1, 1, 1)
+                        bone.rotation_axis_angle[0] = 0
+                        bone.rotation_axis_angle[1] = 1
+                        bone.rotation_axis_angle[2] = 0
+                        bone.rotation_axis_angle[3] = 0
+
+                # Update the viewport
+                bpy.context.view_layer.update()
+
+        clear_pose_transforms_for_armature_layer()
+
+        return {'FINISHED'}
