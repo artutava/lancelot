@@ -31,6 +31,7 @@ class LCT3_OT_FK_Layer(Operator):
                 bpy.ops.armature.armature_layers(layers=T_layers)
                 print("transform")
                 obj["LT FK"] = 1
+                
             else:
                 T_layers = now_layers
                 print( "now to T")
@@ -41,6 +42,7 @@ class LCT3_OT_FK_Layer(Operator):
                 bpy.ops.armature.armature_layers(layers=T_layers)
                 print("transform")
                 obj["LT FK"] = 0
+                
 
             return {'FINISHED'}
         else:
@@ -426,3 +428,27 @@ class LCT3_OT_Set_Inverse_all(Operator):
             return {'FINISHED'}
 
 
+class LCT3_OT_Clear_all_bone_transform(Operator):
+    bl_idname = "lct3.clear_all_bone_transform"
+    bl_label = "Clear All Transforms"
+    bl_description= "Clear all transform in selected armature, so they get back to original state"
+
+    def execute (self,context):
+        # Ensure an armature is selected
+        if bpy.context.active_object and bpy.context.active_object.type == 'ARMATURE':
+            armature = bpy.context.active_object
+            
+            # Clear pose transforms for all bones in the selected armature
+            for bone in armature.pose.bones:
+                bone.location.zero()
+                bone.rotation_quaternion.identity()
+                bone.rotation_euler.zero()
+                bone.scale = (1, 1, 1)
+                bone.rotation_axis_angle[0] = 0
+                bone.rotation_axis_angle[1] = 1
+                bone.rotation_axis_angle[2] = 0
+                bone.rotation_axis_angle[3] = 0
+
+            # Update the viewport
+            bpy.context.view_layer.update()
+        return {'FINISHED'}
