@@ -16,7 +16,7 @@ bl_info = {
     "author" : "SirCruX Studios",
     "description" : "",
     "blender" : (3, 3, 1),
-    "version" : (3, 1, 0),
+    "version" : (3, 1, 1),
     "location" : "",
     "warning" : "",
     "category" : "Generic"
