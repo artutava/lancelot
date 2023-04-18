@@ -210,20 +210,33 @@ class LCT3_PT_Panel_Layers(Panel):
 
         if bpy.context.object.type == 'ARMATURE':
 
-            #Trocar icone mocap----------------------
-            status_mocap= obj["LT MOCAP"]
+            now_layers=obj.data.layers
+            now_layers = list(now_layers)
 
-            if status_mocap == 1:
+            T_layers = now_layers
+
+            if T_layers[3] == True:
                 mocap_icon ="HIDE_OFF"
                 mocap_txt="Mostrar MOCAP"
             else:
                 mocap_icon="HIDE_ON"
                 mocap_txt="Esconder MOCAP"
 
+            # #Trocar icone mocap----------------------
+            # status_mocap= obj["LT MOCAP"]
+
+            # if status_mocap == 1:
+            #     mocap_icon ="HIDE_OFF"
+            #     mocap_txt="Mostrar MOCAP"
+            # else:
+            #     mocap_icon="HIDE_ON"
+            #     mocap_txt="Esconder MOCAP"
+            
+
             #Trocar icone mocap original----------------------
             status_mocap_raw = obj["LT MOCAP RAW"]
 
-            if status_mocap_raw == 1:
+            if T_layers[16] == True:
                 mocap_raw_icon ="HIDE_OFF"
                 mmocap_raw_txt="Mostrar MOCAP"
             else:
@@ -234,7 +247,7 @@ class LCT3_PT_Panel_Layers(Panel):
             #Trocar icone FK--------------------------
             status_fk= obj["LT FK"]
 
-            if status_fk == 1:
+            if T_layers[1] == True:
                 fk_icon ="HIDE_OFF"
                 fk_txt="Mostrar FK"
             else:
@@ -244,7 +257,7 @@ class LCT3_PT_Panel_Layers(Panel):
             #Trocar icone IK---------------------------
             status_ik= obj["LT IK"]
 
-            if status_ik == 1:
+            if T_layers[2] == True:
                 ik_icon ="HIDE_OFF"
                 ik_txt="Mostrar IK"
             else:
@@ -254,7 +267,7 @@ class LCT3_PT_Panel_Layers(Panel):
             #Trocar icone EYES---------------------------
             status_eyes= obj["LT EYES"]
 
-            if status_eyes == 1:
+            if T_layers[6] == True:
                 eyes_icon ="HIDE_OFF"
                 eyes_txt="Mostrar EYES"
             else:
@@ -264,7 +277,7 @@ class LCT3_PT_Panel_Layers(Panel):
             #Trocar icone FINGERS---------------------------
             status_fingers= obj["LT FINGERS"]
 
-            if status_fingers == 1:
+            if T_layers[5] == True:
                 fingers_icon ="HIDE_OFF"
                 fingers_txt="Mostrar FINGERS"
             else:
