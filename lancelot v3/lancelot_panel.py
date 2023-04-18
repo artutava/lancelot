@@ -10,7 +10,7 @@ pcoll = bpy.utils.previews.new()
 my_icons_dir = os.path.join(os.path.dirname(__file__), "icons")
 
 # load a preview thumbnail of a file and store in the previews collection
-pcoll.load("my_icon", os.path.join(my_icons_dir, "icon.png"), 'IMAGE')
+pcoll.load("my_icon", os.path.join(my_icons_dir, "logo384.png"), 'IMAGE')
 pcoll.load("fingers_l", os.path.join(my_icons_dir, "hand_l.png"), 'IMAGE')
 pcoll.load("fingers_r", os.path.join(my_icons_dir, "hand_r.png"), 'IMAGE')
 preview_collections["main"] = pcoll
@@ -46,12 +46,10 @@ class LCT3_PT_Panel_Main(Panel):
             col= rowsc.column()
             rowsc.template_icon(my_icon.icon_id, scale=6)
             col= rowsc.column()
-
             
 
             
-            row = layout.row()
-            row.label(text="Character: " + obj.name)
+            
             
             row = layout.row()
             row.prop(obj, "name")
@@ -86,7 +84,7 @@ class LCT3_PT_Panel_Main(Panel):
         else:
             rowsc = layout.row()
             col= rowsc.column()
-            rowsc.template_icon(my_icon.icon_id, scale=8)
+            rowsc.template_icon(my_icon.icon_id, scale=7)
             col= rowsc.column()
             layout = self.layout
             row = layout.row()

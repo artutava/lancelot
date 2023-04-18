@@ -433,13 +433,16 @@ class LCT3_OT_Clear_all_bone_transform(Operator):
     bl_label = "Clear All Transforms"
     bl_description= "Clear all transform in selected armature, so they get back to original state"
 
-    def execute (self,context):
+    def execute(self, context):
         # Ensure an armature is selected
         if bpy.context.active_object and bpy.context.active_object.type == 'ARMATURE':
             armature = bpy.context.active_object
             
             # Clear pose transforms for all bones in the selected armature
             for bone in armature.pose.bones:
+                # Store the original rotation mode
+                original_rotation_mode = bone.rotation_mode
+                
                 bone.location.zero()
                 bone.rotation_quaternion.identity()
                 bone.rotation_euler.zero()
@@ -448,6 +451,9 @@ class LCT3_OT_Clear_all_bone_transform(Operator):
                 bone.rotation_axis_angle[1] = 1
                 bone.rotation_axis_angle[2] = 0
                 bone.rotation_axis_angle[3] = 0
+
+                # Set the rotation mode back to its original value
+                bone.rotation_mode = original_rotation_mode
 
             # Update the viewport
             bpy.context.view_layer.update()
@@ -458,7 +464,7 @@ class LCT3_OT_Clear_bone_group_transform(Operator):
     bl_label = "Clear Bone Group Transforms"
     bl_description= "Clear the transforms of bones in the same bone group as selected bone."
 
-    def execute (self,context):
+    def execute(self, context):
 
         def clear_pose_transforms_for_bone_group():
             # Check if the active object is an armature and has an active bone
@@ -473,6 +479,9 @@ class LCT3_OT_Clear_bone_group_transform(Operator):
                     # Clear pose transforms for all bones in the bone group
                     for bone in armature.pose.bones:
                         if bone.bone_group == bone_group:
+                            # Store the original rotation mode
+                            original_rotation_mode = bone.rotation_mode
+                            
                             bone.location.zero()
                             bone.rotation_quaternion.identity()
                             bone.rotation_euler.zero()
@@ -481,6 +490,9 @@ class LCT3_OT_Clear_bone_group_transform(Operator):
                             bone.rotation_axis_angle[1] = 1
                             bone.rotation_axis_angle[2] = 0
                             bone.rotation_axis_angle[3] = 0
+
+                            # Set the rotation mode back to its original value
+                            bone.rotation_mode = original_rotation_mode
 
                     # Update the viewport
                     bpy.context.view_layer.update()
@@ -495,9 +507,7 @@ class LCT3_OT_Clear_bone_layer_transform(Operator):
     bl_label = "Clear Bone Layer Transforms"
     bl_description= "Clear the transforms of bones in the same layer as selected bone."
 
-    def execute (self,context):
-
-       
+    def execute(self, context):
 
         def clear_pose_transforms_for_armature_layer():
             # Check if the active object is an armature and has an active bone
@@ -511,6 +521,9 @@ class LCT3_OT_Clear_bone_layer_transform(Operator):
                 # Clear pose transforms for all bones in the same armature layer
                 for bone in armature.pose.bones:
                     if any(x and y for x, y in zip(bone.bone.layers, armature_layer)):
+                        # Store the original rotation mode
+                        original_rotation_mode = bone.rotation_mode
+                        
                         bone.location.zero()
                         bone.rotation_quaternion.identity()
                         bone.rotation_euler.zero()
@@ -519,6 +532,9 @@ class LCT3_OT_Clear_bone_layer_transform(Operator):
                         bone.rotation_axis_angle[1] = 1
                         bone.rotation_axis_angle[2] = 0
                         bone.rotation_axis_angle[3] = 0
+
+                        # Set the rotation mode back to its original value
+                        bone.rotation_mode = original_rotation_mode
 
                 # Update the viewport
                 bpy.context.view_layer.update()
