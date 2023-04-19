@@ -20,7 +20,7 @@ class LCT3_PT_Panel_Main(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname="LCT3_PT_Panel_Main"
-    bl_label = "Lancelot Rig v3.1"
+    bl_label = "Lancelot Rig v3.1.1"
     bl_category = "Lancelot v3"
     #bl_context= "posemode"
 

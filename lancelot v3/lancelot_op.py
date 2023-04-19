@@ -19,29 +19,20 @@ class LCT3_OT_FK_Layer(Operator):
             now_layers=obj.data.layers
             now_layers = list(now_layers)
             print(now_layers)
-            
-            
-            if obj["LT FK"] == 0:
-                T_layers = now_layers
-                print( "now to T",T_layers)
+            T_layers = now_layers
+            T_layers[0] = True
+
+            if T_layers[1] == False:
                 T_layers[1] = True
-                print ("invert",T_layers)
                 T_layers = tuple(T_layers)
-                print( "to tuple",T_layers)
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT FK"] = 1
+                
                 
             else:
-                T_layers = now_layers
-                print( "now to T")
                 T_layers[1] = False
-                print ("invert")
                 T_layers = tuple(T_layers)
-                print( "to tuple")
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT FK"] = 0
+                
                 
 
             return {'FINISHED'}
@@ -70,28 +61,17 @@ class LCT3_OT_IK_Layer(Operator):
             now_layers=obj.data.layers
             now_layers = list(now_layers)
             print(now_layers)
+            T_layers = now_layers
+            T_layers[0] = True
             
-            
-            if obj["LT IK"] == 0:
-                T_layers = now_layers
-                print( "now to T",T_layers)
+            if T_layers[2] == False:
                 T_layers[2] = True
-                print ("invert",T_layers)
                 T_layers = tuple(T_layers)
-                print( "to tuple",T_layers)
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT IK"] = 1
             else:
-                T_layers = now_layers
-                print( "now to T")
                 T_layers[2] = False
-                print ("invert")
                 T_layers = tuple(T_layers)
-                print( "to tuple")
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT IK"] = 0
 
             return {'FINISHED'}
         else:
@@ -116,28 +96,20 @@ class LCT3_OT_MOCAP_Layer(Operator):
             now_layers=obj.data.layers
             now_layers = list(now_layers)
             print(now_layers)
-            
-            
-            if obj["LT MOCAP"] == 0:
-                T_layers = now_layers
-                print( "now to T",T_layers)
+            T_layers = now_layers
+            T_layers[0] = True
+
+            if T_layers[3] == False:
                 T_layers[3] = True
-                print ("invert",T_layers)
                 T_layers = tuple(T_layers)
-                print( "to tuple",T_layers)
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT MOCAP"] = 1
+                
+               
             else:
-                T_layers = now_layers
-                print( "now to T")
                 T_layers[3] = False
-                print ("invert")
                 T_layers = tuple(T_layers)
-                print( "to tuple")
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT MOCAP"] = 0
+               
 
             return {'FINISHED'}
         else:
@@ -162,28 +134,19 @@ class LCT3_OT_MOCAP_RAW_Layer(Operator):
             now_layers=obj.data.layers
             now_layers = list(now_layers)
             print(now_layers)
-            
-            
-            if obj["LT MOCAP RAW"] == 0:
-                T_layers = now_layers
-                print( "now to T",T_layers)
+            T_layers = now_layers
+            T_layers[0] = True
+
+            if T_layers[16] == False:
                 T_layers[16] = True
-                print ("invert",T_layers)
                 T_layers = tuple(T_layers)
-                print( "to tuple",T_layers)
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT MOCAP RAW"] = 1
+              
             else:
-                T_layers = now_layers
-                print( "now to T")
                 T_layers[16] = False
-                print ("invert")
                 T_layers = tuple(T_layers)
-                print( "to tuple")
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT MOCAP RAW"] = 0
+                
 
             return {'FINISHED'}
         else:
@@ -206,28 +169,19 @@ class LCT3_OT_FINGERS_Layer(Operator):
             now_layers=obj.data.layers
             now_layers = list(now_layers)
             print(now_layers)
-            
-            
-            if obj["LT FINGERS"] == 0:
-                T_layers = now_layers
-                print( "now to T",T_layers)
+            T_layers = now_layers
+            T_layers[0] = True
+
+            if T_layers[5] == False:
                 T_layers[5] = True
-                print ("invert",T_layers)
                 T_layers = tuple(T_layers)
-                print( "to tuple",T_layers)
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT FINGERS"] = 1
+                
             else:
-                T_layers = now_layers
-                print( "now to T")
                 T_layers[5] = False
-                print ("invert")
                 T_layers = tuple(T_layers)
-                print( "to tuple")
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT FINGERS"] = 0
+               
 
             return {'FINISHED'}
         else:
@@ -250,28 +204,19 @@ class LCT3_OT_EYES_Layer(Operator):
             now_layers=obj.data.layers
             now_layers = list(now_layers)
             print(now_layers)
+            T_layers = now_layers
+            T_layers[0] = True
             
-            
-            if obj["LT EYES"] == 0:
-                T_layers = now_layers
-                print( "now to T",T_layers)
+            if T_layers[6] == False:
                 T_layers[6] = True
-                print ("invert",T_layers)
                 T_layers = tuple(T_layers)
-                print( "to tuple",T_layers)
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT EYES"] = 1
+                
             else:
-                T_layers = now_layers
-                print( "now to T")
                 T_layers[6] = False
-                print ("invert")
                 T_layers = tuple(T_layers)
-                print( "to tuple")
                 bpy.ops.armature.armature_layers(layers=T_layers)
-                print("transform")
-                obj["LT EYES"] = 0
+                
 
             return {'FINISHED'}
         else:
