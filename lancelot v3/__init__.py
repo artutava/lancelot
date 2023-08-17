@@ -16,7 +16,7 @@ bl_info = {
     "author" : "SirCruX Studios",
     "description" : "",
     "blender" : (3, 3, 1),
-    "version" : (3, 1, 3),
+    "version" : (3, 1, 4),
     "location" : "",
     "warning" : "",
     "category" : "Generic"
@@ -26,9 +26,9 @@ import os
 import bpy
 
 from . lancelot_op import LCT3_OT_FK_Layer, LCT3_OT_IK_Layer, LCT3_OT_MOCAP_Layer, LCT3_OT_MOCAP_RAW_Layer, LCT3_OT_FINGERS_Layer, LCT3_OT_Select_L_Fingers, LCT3_OT_EYES_Layer, LCT3_OT_Select_R_Fingers, LCT3_OT_Clear_bone_transform, LCT3_OT_Set_Inverse_all, LCT3_OT_Clear_all_bone_transform, LCT3_OT_Clear_bone_layer_transform, LCT3_OT_Clear_bone_group_transform
-from . lancelot_panel import LCT3_PT_Panel_Main, LCT3_PT_Panel_Root_Spine, LCT3_PT_Panel_Limbs, LCT3_PT_Panel_Layers, LCT3_PT_Panel_Select
+from . lancelot_panel import LCT3_PT_Panel_Main, LCT3_PT_Panel_Root_Spine, LCT3_PT_Panel_Limbs, LCT3_PT_Panel_Layers, LCT3_PT_Panel_Select, LCT3_PT_Panel_Char_Options
 
-classes = (LCT3_PT_Panel_Main, LCT3_PT_Panel_Layers, LCT3_PT_Panel_Select, LCT3_PT_Panel_Limbs,  LCT3_PT_Panel_Root_Spine, LCT3_OT_FK_Layer, LCT3_OT_IK_Layer, LCT3_OT_MOCAP_Layer, LCT3_OT_MOCAP_RAW_Layer, LCT3_OT_FINGERS_Layer, LCT3_OT_EYES_Layer, LCT3_OT_Clear_bone_transform, LCT3_OT_Select_L_Fingers, LCT3_OT_Select_R_Fingers, LCT3_OT_Set_Inverse_all, LCT3_OT_Clear_all_bone_transform, LCT3_OT_Clear_bone_layer_transform, LCT3_OT_Clear_bone_group_transform)
+classes = (LCT3_PT_Panel_Main, LCT3_PT_Panel_Layers, LCT3_PT_Panel_Select, LCT3_PT_Panel_Limbs,  LCT3_PT_Panel_Root_Spine, LCT3_PT_Panel_Char_Options, LCT3_OT_FK_Layer, LCT3_OT_IK_Layer, LCT3_OT_MOCAP_Layer, LCT3_OT_MOCAP_RAW_Layer, LCT3_OT_FINGERS_Layer, LCT3_OT_EYES_Layer, LCT3_OT_Clear_bone_transform, LCT3_OT_Select_L_Fingers, LCT3_OT_Select_R_Fingers, LCT3_OT_Set_Inverse_all, LCT3_OT_Clear_all_bone_transform, LCT3_OT_Clear_bone_layer_transform, LCT3_OT_Clear_bone_group_transform)
 
 
 

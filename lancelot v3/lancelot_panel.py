@@ -20,7 +20,7 @@ class LCT3_PT_Panel_Main(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname="LCT3_PT_Panel_Main"
-    bl_label = "Lancelot Rig v3.1.2"
+    bl_label = "Lancelot Rig v3.1.4"
     bl_category = "Lancelot v3"
     #bl_context= "posemode"
 
@@ -106,7 +106,7 @@ class LCT3_PT_Panel_Root_Spine(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname= "LCT3_PT_Panel_Root_Spine"
-    bl_label = "Root and Spine"
+    bl_label = "Overlays"
     bl_category = "Lancelot Rig"
     bl_parent_id = "LCT3_PT_Panel_Main"
     
@@ -311,7 +311,7 @@ class LCT3_PT_Panel_Layers(Panel):
             row = layout.row()
             col = row.column()
 
-            col.operator("lct3.eyeslayer", icon=eyes_icon, text="FACE")
+            col.operator("lct3.eyeslayer", icon=eyes_icon, text="EYES")
             
             col = row.column()
             col.operator("lct3.fingerslayer", icon=fingers_icon, text="FINGERS")
@@ -370,6 +370,23 @@ class LCT3_PT_Panel_Select(Panel):
 
         
     
+class LCT3_PT_Panel_Char_Options(Panel):
+    bl_space_type="VIEW_3D"
+    bl_region_type= "UI"
+    bl_idname= "LCT3_PT_Panel_Char_Options"
+    bl_label = "Character Options"
+    bl_category = "Lancelot Rig"
+    bl_parent_id = "LCT3_PT_Panel_Main"
+    
+    def draw(self, context):
+        layout = self.layout
+        obj = context.object
+        if bpy.context.object.type == 'ARMATURE':
+            row.label(text="Arms Offset")
+            row = layout.row()
+            row.prop(obj, '["Arm Offset"]',slider=True)
+
+
 
 
 
