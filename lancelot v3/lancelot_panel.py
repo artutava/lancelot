@@ -325,7 +325,8 @@ class LCT3_PT_Panel_Layers(Panel):
             
             col = row.column()
             col.operator("lct3.fingerslayer", icon=fingers_icon, text="FINGERS")
-
+            
+            row = layout.row()
             col = row.column()
             col.operator("lct3.stretchlayer", icon=stretch_icon, text="STRETCH")
         
