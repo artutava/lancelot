@@ -244,6 +244,16 @@ class LCT3_PT_Panel_Layers(Panel):
                 mocap_raw_txt="Esconder MOCAP"
 
 
+            #Trocar icone STRETCH----------------------
+            if T_layers[18] == True:
+                stretch_icon ="HIDE_OFF"
+                stretch_txt="Mostrar Stretch"
+            else:
+                stretch_icon="HIDE_ON"
+                stretch_txt="Esconder Stretch"
+
+
+
             #Trocar icone FK--------------------------
             status_fk= obj["LT FK"]
 
@@ -315,6 +325,9 @@ class LCT3_PT_Panel_Layers(Panel):
             
             col = row.column()
             col.operator("lct3.fingerslayer", icon=fingers_icon, text="FINGERS")
+
+            col = row.column()
+            col.operator("lct3.stretchlayer", icon=stretch_icon, text="STRETCH")
         
         
 class LCT3_PT_Panel_Select(Panel):

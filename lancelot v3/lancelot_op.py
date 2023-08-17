@@ -43,6 +43,45 @@ class LCT3_OT_FK_Layer(Operator):
             return {'FINISHED'}
 
 
+class LCT3_OT_Stretch_Layer(Operator):
+    bl_idname = "lct3.stretchlayer"
+    bl_label = "Stretch"
+    bl_description= "Stretch Layer"
+ 
+    
+    def execute (self,context):
+        obj = context.object
+        if bpy.context.object.type == 'ARMATURE':
+            bpy.ops.object.mode_set(mode='POSE')
+            # bpy.ops.armature.armature_layers(layers=(False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+            now_layers=obj.data.layers
+            now_layers = list(now_layers)
+            print(now_layers)
+            T_layers = now_layers
+            T_layers[0] = True
+
+            if T_layers[18] == False:
+                T_layers[18] = True
+                T_layers = tuple(T_layers)
+                bpy.ops.armature.armature_layers(layers=T_layers)
+                
+                
+            else:
+                T_layers[18] = False
+                T_layers = tuple(T_layers)
+                bpy.ops.armature.armature_layers(layers=T_layers)
+                
+                
+
+            return {'FINISHED'}
+        else:
+            def draw(self, context):
+                self.layout.label(text="No Armature selected!")
+
+            bpy.context.window_manager.popup_menu(draw, title="Error", icon='ERROR')
+            return {'FINISHED'}
+
+
 
 
 
