@@ -390,7 +390,7 @@ class LCT3_PT_Panel_Char_Options(Panel):
             row.label(text="Mocap Arms Offset")
 
             row = layout.row()
-            row.prop(obj, '[""Arm Offset"]',slider=True)
+            row.prop(obj, '["Arm Offset"]',slider=True)
     
 
 
