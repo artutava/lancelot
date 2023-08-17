@@ -4,7 +4,6 @@ from bpy.types import Operator
 
 
 
-
 class LCT3_OT_FK_Layer(Operator):
     bl_idname = "lct3.fklayer"
     bl_label = "FK"
@@ -487,3 +486,32 @@ class LCT3_OT_Clear_bone_layer_transform(Operator):
         clear_pose_transforms_for_armature_layer()
 
         return {'FINISHED'}
+
+
+
+class LCT3_OT_STR_Reset_Length(Operator):
+    bl_idname = "lct3.reset_length"
+    bl_label = "Stretch Length Reset"
+    bl_description= "Stretch Length Reset"
+ 
+    def execute (self,context):
+        obj = context.object
+        if bpy.context.object.type == 'ARMATURE':
+            bpy.ops.object.mode_set(mode='POSE')
+             # Iterate through the pose bones
+            for bone in obj.pose.bones:
+                # Iterate through the constraints of the bone
+                for constraint in bone.constraints:
+                    # Check if the constraint is of type "STRETCH_TO"
+                    if constraint.type == 'STRETCH_TO':
+                        # Reset the Stretch To constraint
+                        constraint.rest_length = 0
+            # Return to Object mode (optional)
+            bpy.ops.object.mode_set(mode='OBJECT')
+            return {'FINISHED'}
+        else:
+            def draw(self, context):
+                self.layout.label(text="No Armature selected!")
+
+            bpy.context.window_manager.popup_menu(draw, title="Error", icon='ERROR')
+            return {'FINISHED'}

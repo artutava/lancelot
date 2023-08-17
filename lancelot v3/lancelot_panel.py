@@ -364,7 +364,9 @@ class LCT3_PT_Panel_Select(Panel):
             
             row= layout.row ()
             col = row.column()
-            col.operator("lct3.set_inverse_all", text="Cleanup Controls", icon="SPHERE")
+            col.operator("lct3.set_inverse_all", text="Cleanup Child Of", icon="SPHERE")
+            col = row.column()
+            col.operator("lct3.reset_length", text="Reset St. Length", icon="OUTLINER_OB_GREASEPENCIL")
         
         
 
