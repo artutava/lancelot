@@ -383,7 +383,7 @@ class LCT3_PT_Panel_Char_Options(Panel):
     def draw(self, context):
 
         layout = self.layout
-
+        row = layout.row()
         obj = context.object
         if bpy.context.object.type == 'ARMATURE':
             row = layout.row()
