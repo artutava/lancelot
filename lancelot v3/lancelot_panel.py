@@ -384,10 +384,10 @@ class LCT3_PT_Panel_Char_Options(Panel):
         layout = self.layout
         obj = context.object
         if bpy.context.object.type == 'ARMATURE':
-            row = layout.row()
-            row.label(text="Arms Offset")
-            row = layout.row()
-            row.prop(obj, '["Arm Offset"]', slider=True)
+            rowx = layout.row()
+            rowx.label(text="Arms Offset")
+            rowx = layout.row()
+            rowx.prop(obj, '["Arm Offset"]', slider=True)
 
 
 
