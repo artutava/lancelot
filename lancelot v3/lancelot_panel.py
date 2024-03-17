@@ -20,8 +20,8 @@ class LCT3_PT_Panel_Main(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname="LCT3_PT_Panel_Main"
-    bl_label = "Lancelot Rig v3.1.4"
-    bl_category = "Lancelot v3"
+    bl_label = "Lancelot Rig v4.0.0"
+    bl_category = "Lancelot v4"
     #bl_context= "posemode"
 
     
@@ -207,36 +207,24 @@ class LCT3_PT_Panel_Layers(Panel):
         layout = self.layout
 
         obj = context.object
+        arm = bpy.context.object.data
 
         if bpy.context.object.type == 'ARMATURE':
 
-            now_layers=obj.data.layers
-            now_layers = list(now_layers)
+           
 
-            T_layers = now_layers
-
-            if T_layers[3] == True:
+            if arm.collections['MOCAP'].is_visible == True:
                 mocap_icon ="HIDE_OFF"
                 mocap_txt="Mostrar MOCAP"
             else:
                 mocap_icon="HIDE_ON"
                 mocap_txt="Esconder MOCAP"
 
-            # #Trocar icone mocap----------------------
-            # status_mocap= obj["LT MOCAP"]
-
-            # if status_mocap == 1:
-            #     mocap_icon ="HIDE_OFF"
-            #     mocap_txt="Mostrar MOCAP"
-            # else:
-            #     mocap_icon="HIDE_ON"
-            #     mocap_txt="Esconder MOCAP"
             
 
             #Trocar icone mocap original----------------------
-            status_mocap_raw = obj["LT MOCAP RAW"]
 
-            if T_layers[16] == True:
+            if arm.collections['MOCAP RAW'].is_visible == True:
                 mocap_raw_icon ="HIDE_OFF"
                 mmocap_raw_txt="Mostrar MOCAP"
             else:
@@ -245,7 +233,7 @@ class LCT3_PT_Panel_Layers(Panel):
 
 
             #Trocar icone STRETCH----------------------
-            if T_layers[18] == True:
+            if arm.collections['STRETCH'].is_visible == True:
                 stretch_icon ="HIDE_OFF"
                 stretch_txt="Mostrar Stretch"
             else:
@@ -255,9 +243,9 @@ class LCT3_PT_Panel_Layers(Panel):
 
 
             #Trocar icone FK--------------------------
-            status_fk= obj["LT FK"]
+            
 
-            if T_layers[1] == True:
+            if arm.collections['FK'].is_visible == True:
                 fk_icon ="HIDE_OFF"
                 fk_txt="Mostrar FK"
             else:
@@ -265,9 +253,9 @@ class LCT3_PT_Panel_Layers(Panel):
                 fk_txt="Esconder FK"
 
             #Trocar icone IK---------------------------
-            status_ik= obj["LT IK"]
+           
 
-            if T_layers[2] == True:
+            if arm.collections['IK'].is_visible == True:
                 ik_icon ="HIDE_OFF"
                 ik_txt="Mostrar IK"
             else:
@@ -275,9 +263,9 @@ class LCT3_PT_Panel_Layers(Panel):
                 ik_txt="Esconder IK"
             
             #Trocar icone EYES---------------------------
-            status_eyes= obj["LT EYES"]
+           
 
-            if T_layers[6] == True:
+            if arm.collections['EYES'].is_visible == True:
                 eyes_icon ="HIDE_OFF"
                 eyes_txt="Mostrar EYES"
             else:
@@ -285,9 +273,9 @@ class LCT3_PT_Panel_Layers(Panel):
                 eyes_txt="Esconder EYES"
             
             #Trocar icone FINGERS---------------------------
-            status_fingers= obj["LT FINGERS"]
+            
 
-            if T_layers[5] == True:
+            if arm.collections['FK Fingers'].is_visible == True:
                 fingers_icon ="HIDE_OFF"
                 fingers_txt="Mostrar FINGERS"
             else:
@@ -367,18 +355,8 @@ class LCT3_PT_Panel_Select(Panel):
 
             col = row.column()
             col.operator("lct3.clear_all_bone_transform", text="All", icon="OUTLINER_OB_ARMATURE")
-
-            row= layout.row ()
-            
-            col = row.column()
-            col.operator("lct3.clear_bone_group_transform", text="Group", icon="FILE_FOLDER")
-            col = row.column()
-            col.operator("lct3.clear_bone_layer_transform", text="Layer", icon="IMGDISPLAY")
-
             
             row= layout.row ()
-            col = row.column()
-            col.operator("lct3.set_inverse_all", text="Cleanup Child Of", icon="SPHERE")
             col = row.column()
             col.operator("lct3.reset_length", text="Reset St. Length", icon="OUTLINER_OB_GREASEPENCIL")
         
