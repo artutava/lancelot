@@ -388,7 +388,7 @@ class LCT3_PT_Panel_Char_Options(Panel):
 class LCT3_PT_Panel_Collision(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
-    bl_idname= "LCT3_PT_Panel_Char_Options"
+    bl_idname= "LCT3_PT_Panel_Collision"
     bl_label = "Mocap Collisions"
     bl_category = "Lancelot Rig"
     bl_parent_id = "LCT3_PT_Panel_Main"
