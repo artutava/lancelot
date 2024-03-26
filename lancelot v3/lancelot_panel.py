@@ -106,7 +106,7 @@ class LCT3_PT_Panel_Root_Spine(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname= "LCT3_PT_Panel_Root_Spine"
-    bl_label = "Overlays"
+    bl_label = "Mocap Overlays"
     bl_category = "Lancelot Rig"
     bl_parent_id = "LCT3_PT_Panel_Main"
     
@@ -385,6 +385,33 @@ class LCT3_PT_Panel_Char_Options(Panel):
             row.prop(obj, '["Arm Offset"]',slider=True)
     
 
+class LCT3_PT_Panel_Collision(Panel):
+    bl_space_type="VIEW_3D"
+    bl_region_type= "UI"
+    bl_idname= "LCT3_PT_Panel_Char_Options"
+    bl_label = "Mocap Collisions"
+    bl_category = "Lancelot Rig"
+    bl_parent_id = "LCT3_PT_Panel_Main"
+
+    def draw(self, context):
+
+        layout = self.layout
+        row = layout.row()
+        obj = context.object
+        if bpy.context.object.type == 'ARMATURE':
+            row = layout.row()
+            row.label(text="Mocap Arms Offset")
+
+            row = layout.row()
+            row.prop(obj, '["Collision"]',slider=True)
+            row = layout.row()
+            row.prop(obj, '["Collision Head"]',slider=True)
+            row = layout.row()
+            row.prop(obj, '["Collision Top"]',slider=True)
+            row = layout.row()
+            row.prop(obj, '["Collision Bottom"]',slider=True)
+            row = layout.row()
+            row.prop(obj, '["Collision Legs"]',slider=True)
 
 
 
