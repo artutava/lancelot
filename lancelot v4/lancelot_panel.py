@@ -385,10 +385,10 @@ class LCT3_PT_Panel_Char_Options(Panel):
             row.prop(obj, '["Arm Offset"]',slider=True)
     
 
-class LCT3_PT_Panel_Collision(Panel):
+class LCT3_PT_Panel_Mocap_Col(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
-    bl_idname= "LCT3_PT_Panel_Collision"
+    bl_idname= "LCT3_PT_Panel_Mocap_Col"
     bl_label = "Mocap Collisions"
     bl_category = "Lancelot Rig"
     bl_parent_id = "LCT3_PT_Panel_Main"
@@ -400,7 +400,7 @@ class LCT3_PT_Panel_Collision(Panel):
         obj = context.object
         if bpy.context.object.type == 'ARMATURE':
             row = layout.row()
-            row.label(text="Mocap Arms Offset")
+            row.label(text="Collisions Setup")
 
             row = layout.row()
             row.prop(obj, '["Collision"]',slider=True)
