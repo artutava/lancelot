@@ -20,7 +20,7 @@ class LCT3_PT_Panel_Main(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname="LCT3_PT_Panel_Main"
-    bl_label = "Lancelot Rig v4.0.2"
+    bl_label = "Lancelot Rig v4.0.4"
     bl_category = "Lancelot v4"
     #bl_context= "posemode"
 
@@ -414,7 +414,22 @@ class LCT3_PT_Panel_Mocap_Col(Panel):
             row.prop(obj, '["Collision Legs"]',slider=True)
 
 
+class LCT3_PT_Panel_AK_Shapekeys(Panel):
+    bl_space_type="VIEW_3D"
+    bl_region_type= "UI"
+    bl_idname= "LCT3_PT_Panel_AK_Shapekeys"
+    bl_label = "Arkit Shapekeys"
+    bl_category = "Lancelot Rig"
+    bl_parent_id = "LCT3_PT_Panel_Main"
 
+    def draw(self, context):
+        layout = self.layout
+        row = layout.row()
+        obj = context.object
+        if bpy.context.object.type == 'MESH':
+            row = layout.row()
+            col = row.column()
+            col.operator("lct3.create_ak_shapekeys", text="Generate ARKIT Shapekeys", icon="MESH_MONKEY")
 
 
 

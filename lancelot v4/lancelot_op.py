@@ -323,3 +323,41 @@ class LCT3_OT_STR_Reset_Length(Operator):
 
             bpy.context.window_manager.popup_menu(draw, title="Error", icon='ERROR')
             return {'FINISHED'}
+
+
+class LCT3_OT_Create_AK_Shapekeys(Operator):
+    bl_idname = "lct3.create_ak_shapekeys"
+    bl_label = "Create ARKIT Shapekeys"
+    bl_description= "Create Arkit Shapekeys"
+ 
+    def execute (self,context):
+        obj = bpy.context.object
+        shapelist = [ "Key 1", "browInnerUp", "browDown_L", "browDown_R", "browOuterUp_L", "browOuterUp_R", "eyeLookUp_L", "eyeLookUp_R", "eyeLookDown_L", "eyeLookDown_R", "eyeLookIn_L", "eyeLookIn_R", "eyeLookOut_L", "eyeLookOut_R", "eyeBlink_L", "eyeBlink_R", "eyeSquint_L", "eyeSquint_R", "eyeWide_L", "eyeWide_R", "cheekPuff", "cheekSquint_L", "cheekSquint_R", "noseSneer_L", "noseSneer_R", "jawOpen", "jawForward", "jawLeft", "jawRight", "mouthFunnel", "mouthPucker", "mouthLeft", "mouthRight", "mouthRollUpper", "mouthRollLower", "mouthShrugUpper", "mouthShrugLower", "mouthClose", "mouthSmile_L", "mouthSmile_R", "mouthFrown_L", "mouthFrown_R", "mouthDimple_L", "mouthDimple_R", "mouthUpperUp_L", "mouthUpperUp_R", "mouthLowerDown_L", "mouthLowerDown_R", "mouthPress_L", "mouthPress_R", "mouthStretch_L", "mouthStretch_R", "tongueOut"]
+        if obj:
+            if obj.type == 'MESH':
+                if not obj.data.shape_keys:
+                    obj.shape_key_add(name="Basis", from_mix=False)
+                for each in shapelist:
+                    if each not in obj.data.shape_keys.key_blocks:
+                        print(f"Creating shape key: {each}")
+                        obj.shape_key_add(name=each, from_mix=False)
+                        
+                    else:
+                        print(f"Shape key already exists: {each}")
+                        def draw(self, context):
+                            self.layout.label(text="Shape key already exist!")
+                        
+                        
+            else:
+                print("Selected object is not a mesh")
+                def draw(self, context):
+                            self.layout.label(text="Selected object is not a mesh")
+                
+                
+        else:
+            print("No object selected")
+            def draw(self, context):
+                            self.layout.label(text="No object selected")
+           
+        return {'FINISHED'}
+            
