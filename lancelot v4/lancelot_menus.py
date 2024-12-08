@@ -31,29 +31,45 @@ class PIE_MT_IkFingersMenu(Menu):
         layout = self.layout
         pie = layout.menu_pie()
 
-        
+        # Right Option: IK Fingers R
+        op = pie.operator("lct3.select_bone_collection", text="IK Fingers R", icon_value=fingers_r.icon_id)
+        op.collection_name = "IK Fingers R"
 
-        # Right Option: Control Arms L
-        op = pie.operator("lct3.select_bone_collection", text="Mocap Arms L")
-        op.collection_name = "MOCAP ARMS L"
-
-        # Right Option: Control Arms R
-        op = pie.operator("lct3.select_bone_collection", text="Mocap Arms R")
-        op.collection_name = "MOCAP ARMS R"
-
-        pie.separator()#Skip north
-        pie.separator()#Skip south
-
-        pie.separator()#Skip northeast
-        pie.separator()#Skip nortwest
 
         # Left Option: IK Fingers L
         op = pie.operator("lct3.select_bone_collection", text="IK Fingers L", icon_value=fingers_l.icon_id)
         op.collection_name = "IK Fingers L"
         
+        # Right Option: Control Head
+        op = pie.operator("lct3.select_bone_collection", text="Mocap Head")
+        op.collection_name = "MOCAP HEAD"
+        
+        # Right Option: Control Spine
+        op = pie.operator("lct3.select_bone_collection", text="Mocap Spine")
+        op.collection_name = "MOCAP SPINE"
 
-        # Right Option: IK Fingers R
-        op = pie.operator("lct3.select_bone_collection", text="IK Fingers R", icon_value=fingers_r.icon_id)
-        op.collection_name = "IK Fingers R"
 
+        # Right Option: Control Arms R
+        op = pie.operator("lct3.select_bone_collection", text="Mocap Arms R")
+        op.collection_name = "MOCAP ARMS R"
+
+        # Right Option: Control Arms L
+        op = pie.operator("lct3.select_bone_collection", text="Mocap Arms L")
+        op.collection_name = "MOCAP ARMS L"
+
+        
+
+        # Right Option: Control Legs R
+        op = pie.operator("lct3.select_bone_collection", text="Mocap Legs R")
+        op.collection_name = "MOCAP LEGS R"
+
+        # Right Option: Control Legs L
+        op = pie.operator("lct3.select_bone_collection", text="Mocap Legs L")
+        op.collection_name = "MOCAP LEGS L"
+
+
+
+        
+
+      
         
