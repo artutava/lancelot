@@ -158,6 +158,31 @@ class LCT3_OT_FINGERS_Layer(Operator):
             bpy.context.window_manager.popup_menu(draw, title="Error", icon='ERROR')
             return {'FINISHED'}
 
+
+class LCT3_OT_FINGERS_IK(Operator):
+    bl_idname = "lct3.fingersik"
+    bl_label = "FINGERS IK LAYER"
+    bl_description= "IK Finger Controls"
+
+    def execute (self,context):
+        obj = context.object
+        if bpy.context.object.type == 'ARMATURE':
+            arm = bpy.context.object.data
+
+            if arm.collections['IK Fingers'].is_visible == False:
+                arm.collections['IK Fingers'].is_visible = True
+            else:
+                arm.collections['IK Fingers'].is_visible = False
+               
+
+            return {'FINISHED'}
+        else:
+            def draw(self, context):
+                self.layout.label(text="No Armature selected!")
+
+            bpy.context.window_manager.popup_menu(draw, title="Error", icon='ERROR')
+            return {'FINISHED'}
+
 class LCT3_OT_EYES_Layer(Operator):
     bl_idname = "lct3.eyeslayer"
     bl_label = "EYES LAYER"
@@ -360,4 +385,47 @@ class LCT3_OT_Create_AK_Shapekeys(Operator):
                             self.layout.label(text="No object selected")
            
         return {'FINISHED'}
-            
+
+
+
+
+class LCT3_OBJECT_OT_SelectBoneCollection(Operator):
+    """Operator to select a bone collection"""
+    bl_idname = "lct3.select_bone_collection"
+    bl_label = "Select Bone Collection"
+    bl_description = "Select all controls for a specific bone collection"
+
+    collection_name: bpy.props.StringProperty()
+
+    def execute(self, context):
+        if bpy.context.object and bpy.context.object.type == 'ARMATURE':
+            obj = context.object
+            arm = obj.data
+
+            # Ensure the bone collection exists
+            bone_collection = arm.collections_all.get(self.collection_name)
+            if not bone_collection:
+                self.report({'ERROR'}, f"No collection named '{self.collection_name}'")
+                return {'CANCELLED'}
+
+            # Switch to Pose Mode
+            bpy.ops.object.mode_set(mode='POSE')
+
+            # Make the collection visible
+            bone_collection.is_visible = True
+
+            # Set the active bone collection
+            arm.collections.active = bone_collection
+
+            # Select all bones in the collection
+            bpy.ops.armature.collection_select()
+
+            self.report({'INFO'}, f"Selected bones in collection: {self.collection_name}")
+            return {'FINISHED'}
+        else:
+            # Popup error message if no armature is selected
+            def draw(self, context):
+                self.layout.label(text="No Armature selected!")
+
+            bpy.context.window_manager.popup_menu(draw, title="Error", icon='ERROR')
+            return {'CANCELLED'}

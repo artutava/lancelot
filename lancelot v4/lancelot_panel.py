@@ -20,8 +20,8 @@ class LCT3_PT_Panel_Main(Panel):
     bl_space_type="VIEW_3D"
     bl_region_type= "UI"
     bl_idname="LCT3_PT_Panel_Main"
-    bl_label = "Lancelot Rig v4.0.4"
-    bl_category = "Lancelot v4"
+    bl_label = "Lancelot Rig v4.2"
+    bl_category = "Lancelot v4.2"
     #bl_context= "posemode"
 
     
@@ -277,10 +277,20 @@ class LCT3_PT_Panel_Layers(Panel):
 
             if arm.collections['FK Fingers'].is_visible == True:
                 fingers_icon ="HIDE_OFF"
-                fingers_txt="Mostrar FINGERS"
+                fingers_txt="Mostrar FINGERS FK"
             else:
                 fingers_icon="HIDE_ON"
-                fingers_txt="Esconder FINGERS"
+                fingers_txt="Esconder FINGERS FK"
+
+                #Trocar icone FINGERS IK---------------------------
+            
+            
+            if arm.collections['IK Fingers'].is_visible == True:
+                fingers_ik_icon ="HIDE_OFF"
+                fingers_ik_txt="Mostrar FINGERS IK"
+            else:
+                fingers_ik_icon="HIDE_ON"
+                fingers_ik_txt="Esconder FINGERS IK"
             
             
             row = layout.row()
@@ -307,14 +317,16 @@ class LCT3_PT_Panel_Layers(Panel):
             row = layout.row()
             row.label(text="EXTRA")
             row = layout.row()
-            col = row.column()
-
-            col.operator("lct3.eyeslayer", icon=eyes_icon, text="EYES")
             
             col = row.column()
-            col.operator("lct3.fingerslayer", icon=fingers_icon, text="FINGERS")
+            col.operator("lct3.fingersik", icon=fingers_ik_icon, text="FINGERS IK")
+            col = row.column()
+            col.operator("lct3.fingerslayer", icon=fingers_icon, text="FINGERS FK")
             
             row = layout.row()
+            
+            col = row.column()
+            col.operator("lct3.eyeslayer", icon=eyes_icon, text="EYES")
             col = row.column()
             col.operator("lct3.stretchlayer", icon=stretch_icon, text="STRETCH")
         
