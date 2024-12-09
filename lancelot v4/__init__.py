@@ -12,7 +12,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 bl_info = {
-    "name" : "Lancelot v4.2",
+    "name" : "Lancelot V4.2",
     "author" : "SirCruX Studios",
     "description" : "",
     "blender" : (4, 0, 0),
@@ -78,7 +78,7 @@ def register():
 def unregister():
 
     unregister_keymap()  # Unregister the shortcut
-    
+
     # for pcoll in preview_collections.values():
     #     bpy.utils.previews.remove(pcoll)
     # preview_collections.clear()
