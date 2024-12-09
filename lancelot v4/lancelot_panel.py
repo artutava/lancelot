@@ -395,6 +395,11 @@ class LCT3_PT_Panel_Char_Options(Panel):
 
             row = layout.row()
             row.prop(obj, '["Arm Offset"]',slider=True)
+
+            row = layout.row()
+            row.label(text="Bendy Bones Options")
+            row = layout.row()
+            row.prop(obj, '["Ease"]',slider=True)
     
 
 class LCT3_PT_Panel_Mocap_Col(Panel):
